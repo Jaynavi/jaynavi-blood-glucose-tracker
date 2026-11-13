@@ -1,27 +1,26 @@
-# Jaynavi – Blood Glucose Tracker
+# Sweety – Blood Glucose Tracker
 
-A full-stack web application that helps users record, manage, and track their daily blood glucose readings.
+A full-stack blood glucose tracking application built using React.js, Node.js, Express.js, and PostgreSQL.
 
 ## About the Project
 
-Jaynavi – Blood Glucose Tracker is a personal glucose monitoring application where users can create an account, log in, add their glucose readings, update or delete records, view reading history, and check reports.
-
-The application provides a simple and user-friendly interface for managing blood glucose records.
+Sweety helps users record, manage, and monitor their daily blood glucose readings. Users can create an account, log in securely, add readings, edit or delete records, view reading history, and check daily and monthly statistics.
 
 ## Features
 
-- User Registration and Login
-- Secure Password Hashing
-- JWT-Based Authentication
-- Add Blood Glucose Readings
-- Edit Existing Readings
-- Delete Readings
-- View Reading History
-- Dashboard with Daily and Monthly Statistics
-- Daily, Monthly, and Previous Month Reports
-- Date and Time Slot Selection
-- Input Validation
-- User-Specific Reading Records
+- User registration and login
+- Password hashing using bcryptjs
+- JWT-based authentication
+- Add, view, edit, and delete glucose readings
+- Four daily time slots:
+  - Morning (fasting)
+  - After breakfast
+  - After lunch
+  - After dinner
+- Reading history
+- Daily and monthly dashboard statistics
+- Input and date validation
+- User-specific reading records
 
 ## Technologies Used
 
@@ -29,66 +28,62 @@ The application provides a simple and user-friendly interface for managing blood
 - React.js
 - Vite
 - JavaScript
-- HTML
-- CSS
+- HTML and CSS
 
 ### Backend
 - Node.js
 - Express.js
 - REST APIs
-- JSON Web Token (JWT)
+- JWT
 - bcryptjs
 
 ### Database
 - PostgreSQL
 
 ### Tools
-- Visual Studio Code
-- Postman
-- pgAdmin
 - Git and GitHub
+- VS Code
+- pgAdmin
+- Postman
 
 ## Project Structure
 
 ```text
 blood-project/
-│
 ├── backend/
 │   ├── middleware/
-│   │   └── authMiddleware.js
 │   ├── routes/
 │   │   ├── auth.js
 │   │   └── readings.js
 │   ├── db.js
 │   ├── server.js
-│   ├── .env
+│   ├── seed.js
+│   ├── .env.example
 │   └── package.json
-│
 ├── frontend/
 │   ├── src/
-│   │   ├── App.jsx
-│   │   ├── App.css
-│   │   ├── main.jsx
-│   │   └── index.css
-│   ├── package.json
-│   └── vite.config.js
-│
-├── .gitignore
+│   ├── public/
+│   └── package.json
 └── README.md
 ```
 
-## Database
+## Database Setup
 
-The project uses PostgreSQL with two main tables:
+1. Install PostgreSQL.
+2. Open pgAdmin.
+3. Create a database named `sweety_db`.
+4. Create the `users` and `glucose_readings` tables with the columns used by the application.
 
-**1. users**
+### Users Table
+
 - id
 - name
 - email
 - password
 - created_at
 
-**2. glucose_readings**
+### Glucose Readings Table
+
 - id
 - user_id
 - reading_date
@@ -96,31 +91,54 @@ The project uses PostgreSQL with two main tables:
 - glucose_value
 - created_at
 
-## How to Run the Project
+## Installation and Setup
 
 ### 1. Clone the Repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/Jaynavi/jaynavi-blood-glucose-tracker.git
+cd jaynavi-blood-glucose-tracker
 ```
 
-### 2. Start the Backend
+### 2. Backend Setup
 
 ```bash
 cd backend
 npm install
-node server.js
 ```
 
-The backend runs on:
+Create a `.env` file inside the backend folder using `.env.example` as a reference.
 
-```text
+Configure your local database credentials and JWT secret.
+
+### 3. Start the Backend
+
+```bash
+npm start
+```
+
+Backend URL:
+
 http://localhost:5000
+
+### 4. Seed Demo Data
+
+Open another terminal inside the backend folder and run:
+
+```bash
+npm run seed
 ```
 
-### 3. Start the Frontend
+This creates a demo account and sample glucose readings.
 
-Open a separate terminal:
+Demo account:
+
+- Email: demo@sweety.com
+- Password: SweetyDemo123
+
+### 5. Frontend Setup
+
+Open another terminal:
 
 ```bash
 cd frontend
@@ -128,11 +146,11 @@ npm install
 npm run dev
 ```
 
-Open the local URL displayed in the terminal.
+Open the local URL displayed by Vite.
 
 ## Environment Variables
 
-Create a `.env` file inside the backend folder and configure:
+The backend requires the following environment variables:
 
 ```env
 PORT=5000
@@ -144,22 +162,49 @@ DB_PASSWORD=your_database_password
 JWT_SECRET=your_jwt_secret
 ```
 
-Replace the example values with your own local configuration. Never upload your actual `.env` file to GitHub.
+See `backend/.env.example` for the example configuration.
+
+Never upload actual passwords, database credentials, or JWT secrets to GitHub.
 
 ## Validation
 
-- Glucose readings must be whole numbers between 40 and 600 mg/dL.
-- Future dates are not allowed.
-- Users can access only their own glucose records.
+The application includes validation for:
+
+- Required glucose values
+- Whole-number glucose values between 40 and 600 mg/dL
+- Future dates
+- Valid reading time slots
+- Authenticated user access
+
+## Testing
+
+The application can be tested manually by:
+
+1. Registering a new user.
+2. Logging in with valid credentials.
+3. Adding a glucose reading.
+4. Viewing reading history.
+5. Editing an existing reading.
+6. Deleting a reading.
+7. Checking dashboard statistics.
+
+No automated test command is currently configured.
+
+## Notes
+
+- PostgreSQL is used for persistent data storage.
+- Passwords are hashed before being stored.
+- JWT authentication protects reading routes.
+- Users can access only their own reading records.
+- Automated tests and additional validation improvements can be added in future iterations.
 
 ## Author
 
 **Jaynavi Shreya**
 
-B.Tech – Electrical Engineering
-
+B.Tech – Electrical Engineering  
 NIT Jamshedpur
 
 ---
 
-*Built as a full-stack Blood Glucose Tracking application.*
+Built as a full-stack Blood Glucose Tracking application.
