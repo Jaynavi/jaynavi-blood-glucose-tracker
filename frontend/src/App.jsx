@@ -202,7 +202,7 @@ function startEdit(reading) {
       <div className="auth-page">
         <div className="auth-card">
           <div className="brand-icon">♥</div>
-          <h1>Jaynavi</h1>
+          <h1>Sweety</h1>
           <p className="subtitle">Your personal blood glucose tracker</p>
           <h2>{page === 'login' ? 'Welcome back!' : 'Create your account'}</h2>
           <form onSubmit={handleAuth}>
@@ -233,7 +233,7 @@ function startEdit(reading) {
   return (
     <div className="app-layout">
       <aside className="sidebar">
-        <h2>♥ Jaynavi</h2>
+        <h2>♥ Sweety</h2>
         <p className="side-user">Hello, {user}</p>
         <button onClick={() => setPage('dashboard')}>Dashboard</button>
         <button onClick={() => setPage('add')}>Add Reading</button>
@@ -261,7 +261,7 @@ function startEdit(reading) {
               <div className="stat-card"><p>Monthly readings</p><h2>{monthReadings.length}</h2></div>
             </div>
             <div className="content-card">
-              <h2>Welcome to Jaynavi!</h2>
+              <h2>Welcome to Sweety!</h2>
               <p>Add your daily glucose readings and check your reports here.</p>
               <button className="primary-btn" onClick={() => { setMessage(''); setPage('add') }}>+ Add new reading</button>
             </div>
